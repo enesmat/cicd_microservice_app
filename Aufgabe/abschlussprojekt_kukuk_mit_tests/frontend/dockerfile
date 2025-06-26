@@ -8,14 +8,14 @@ COPY package*.json ./
 COPY . .
 
 # Installiert Abhängigkeiten und baut das Projekt
-RUN npm install && npm run build && ls -la
+RUN npm install && npm run build
+RUN ls -la
 
 # NGINX als Webserver für statische Inhalte
-FROM nginx:stable-alpine
+# FROM nginx:stable-alpine
 
 # Kopiert das gebaute Frontend in den Standard-NGINX-Ordner
-RUN --from=build ls
-COPY --from=build /app/dist /usr/share/nginx/html
+# COPY --from=build /app/dist /usr/share/nginx/html
 
 # Port 80 freigeben
-EXPOSE 80
+# EXPOSE 80
