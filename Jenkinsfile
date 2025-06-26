@@ -24,7 +24,7 @@ pipeline {
 
     stage('Test Backend') {
       steps {
-        dir('backend') {
+        dir('Aufgabe/abschlussprojekt_kukuk_mit_tests/backend') {
           sh "mvn test"
         }
       }
@@ -32,7 +32,7 @@ pipeline {
 
     stage('Build Frontend') {
       steps {
-        dir('frontend') {
+        dir('Aufgabe/abschlussprojekt_kukuk_mit_tests/frontend') {
           sh "npm install"
           sh "npm run build"
         }
@@ -42,7 +42,7 @@ pipeline {
 
     stage('Test Frontend') {
       steps {
-        dir('frontend') {
+        dir('Aufgabe/abschlussprojekt_kukuk_mit_tests/frontend') {
           sh "npm test || true"
         }
       }
@@ -104,15 +104,15 @@ pipeline {
   } 
 
   
- // post {
- //   always {
- //     sh 'rm -rf ./*'
- //   }
- //   success {
- //     echo " Jenkins-Pipeline erfolgreich abgeschlossen"
- //   }
- //   failure {
- //     echo " Fehler in der Jenkins-Pipeline aufgetreten."
- //   }
- // }
+  post {
+    always {
+      sh 'rm -rf ./*'
+    }
+    success {
+      echo " Jenkins-Pipeline erfolgreich abgeschlossen"
+    }
+    failure {
+      echo " Fehler in der Jenkins-Pipeline aufgetreten."
+    }
+  }
 } 
