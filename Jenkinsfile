@@ -16,7 +16,7 @@ pipeline {
 
     stage('Build Backend') {
       steps {
-        dir('backend') {
+        dir('Aufgabe/abschlussprojekt_kukuk_mit_tests/backend') {
           sh "mvn clean package -P${params.BUILD_ENV}"
         }
       }
