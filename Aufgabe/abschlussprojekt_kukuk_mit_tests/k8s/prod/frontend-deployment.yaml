@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kukuk-frontend
+  namespace: enes-prod
+spec:
+  replicas: 2                 # Mehr als 1 für Prod empfohlen
+  selector:
+    matchLabels:
+      app: kukuk-frontend
+  template:
+    metadata:
+      labels:
+        app: kukuk-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: registry.example.com/kukuk-frontend:1.0.0
+          ports:
+            - containerPort: 80
