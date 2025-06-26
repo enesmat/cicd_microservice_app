@@ -51,8 +51,8 @@ pipeline {
 
     stage('Docker Build') {
       steps {
-        sh "docker build -t ${REGISTRY_URL}/${IMAGE_BACKEND}:${params.BUILD_ENV} ./backend"
-        sh "docker build -t ${REGISTRY_URL}/${IMAGE_FRONTEND}:${params.BUILD_ENV} ./frontend"
+        sh "docker build -t ${REGISTRY_URL}/${IMAGE_BACKEND}:${params.BUILD_ENV} ./Aufgabe/abschlussprojekt_kukuk_mit_tests/backend"
+        sh "docker build -t ${REGISTRY_URL}/${IMAGE_FRONTEND}:${params.BUILD_ENV} ./Aufgabe/abschlussprojekt_kukuk_mit_tests/frontend"
       }
     }
 
