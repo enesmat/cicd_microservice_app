@@ -104,15 +104,15 @@ pipeline {
   } 
 
   
-  post {
-    always {
-      sh 'rm -rf ./*'
-    }
-    success {
-      echo " Jenkins-Pipeline erfolgreich abgeschlossen"
-    }
-    failure {
-      echo " Fehler in der Jenkins-Pipeline aufgetreten"
-    }
-  }
+ // post {
+ //   always {
+ //     sh 'rm -rf ./*'
+ //   }
+ //   success {
+ //     echo " Jenkins-Pipeline erfolgreich abgeschlossen"
+ //   }
+ //   failure {
+ //     echo " Fehler in der Jenkins-Pipeline aufgetreten."
+ //   }
+ // }
 } 
