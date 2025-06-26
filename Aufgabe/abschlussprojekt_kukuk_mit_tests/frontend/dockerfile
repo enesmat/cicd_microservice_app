@@ -1,0 +1,20 @@
+# Node-Image für Build
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# Kopiert Package-Dateien + Code
+COPY package*.json ./
+COPY . .
+
+# Installiert Abhängigkeiten und baut das Projekt
+RUN npm install && npm run build
+
+# NGINX als Webserver für statische Inhalte
+FROM nginx:stable-alpine
+
+# Kopiert das gebaute Frontend in den Standard-NGINX-Ordner
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Port 80 freigeben
+EXPOSE 80

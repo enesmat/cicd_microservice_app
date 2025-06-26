@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Projekt-Gruppe, Name und Version -->
+    <groupId>com.kukuk</groupId>
+    <artifactId>app</artifactId>
+    <version>1.0.0</version>
+
+    <!-- Java-Version für die Spring Boot App -->
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <!-- Abhängigkeiten für Spring Boot Web + Tests -->
+    <dependencies>
+        <!-- Für REST-Endpunkte -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Für Unit Tests -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- Konfiguration für den Build mit Spring Boot -->
+    <build>
+        <plugins>
+            <!-- Plugin, damit man mit 'mvn spring-boot:run' starten kann -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- Profile für unterschiedliche Umgebungen -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <!-- Aktiviert das "dev"-Spring-Profil -->
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <!-- Aktiviert das "prod"-Spring-Profil -->
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

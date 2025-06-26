@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kukuk-backend        # Name des Deployments
+  namespace: enes-dev             # Dev-Umgebung 
+spec:
+  replicas: 1                # Nur ein Pod reicht für Dev
+  selector:
+    matchLabels:
+      app: kukuk-backend     # Verbindet Pod mit dem Service
+  template:
+    metadata:
+      labels:
+        app: kukuk-backend   # Label für Auswahl
+    spec:
+      containers:
+        - name: backend
+          image: registry.example.com/kukuk-backend:1.0.0  # Docker-Image
+          ports:
+            - containerPort: 8081     # Port im Container 
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: enes-dev              # Setzt das Spring-Profil auf "dev"

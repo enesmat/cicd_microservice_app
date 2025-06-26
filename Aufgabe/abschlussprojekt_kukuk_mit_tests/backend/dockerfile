@@ -1,0 +1,23 @@
+# Nutzt ein Java-17-Image mit Maven für Build + Ausführung
+FROM maven:3.9.4-eclipse-temurin-17 AS build
+
+# Arbeitsverzeichnis im Container
+WORKDIR /app
+
+# Kopiert Maven-Config und Quellcode
+COPY pom.xml .
+COPY src ./src
+
+# Führt den Build aus mit dem Profil, das in der Pipeline gesetzt wird
+RUN mvn clean package -P${SPRING_PROFILE:-dev} -DskipTests
+
+# Neues schlankes Image mit nur der App
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+# Kopiert die gebaute .jar-Datei aus dem vorherigen Schritt
+COPY --from=build /app/target/*.jar app.jar
+
+# Startet die App
+ENTRYPOINT ["java", "-jar", "app.jar"]

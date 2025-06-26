@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kukuk-backend
+  namespace: enes-prod             # Namespace für Produktion
+spec:
+  replicas: 2                 # Zwei Pods für mehr Verfügbarkeit
+  selector:
+    matchLabels:
+      app: kukuk-backend
+  template:
+    metadata:
+      labels:
+        app: kukuk-backend
+    spec:
+      containers:
+        - name: backend
+          image: registry.example.com/kukuk-backend:1.0.0
+          ports:
+            - containerPort: 8080      # Port für Prod 
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: enes-prod              # Aktiviere das Prod-Profil
